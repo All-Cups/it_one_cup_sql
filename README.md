@@ -48,7 +48,7 @@ docker run --rm -it ghcr.io/all-cups/it_one_cup_sql --help
 docker run \
   --mount "type=bind,src=$(pwd)/my-solution.sql,dst=/tmp/player1-solution.sql" \
   --mount "type=bind,src=$(pwd)/quick_start.sql,dst=/tmp/player2-solution.sql" \
-  --mount "type=bind,src=$(pwd)/init.sql,dst=/tmp/dump.sql" \
+  --mount "type=bind,src=$(pwd)/init.sql,dst=/tmp/init.sql" \
   --mount "type=bind,src=$(pwd)/my-options.toml,dst=/tmp/options.toml" \
   --rm -it -e SEED=123456 ghcr.io/all-cups/it_one_cup_sql \
   --solution /tmp/player1-solution.sql \
