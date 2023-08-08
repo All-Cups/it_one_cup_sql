@@ -43,7 +43,9 @@ docker run --rm -it ghcr.io/all-cups/it_one_cup_sql --help
 
 ## Пример локального запуска 
 
-Для двух решений с сохранением содержимого init.sql и передачей своего файла настроек мира:
+Для двух решений с сохранением содержимого init.sql и передачей своего файла настроек мира.
+
+### MacOS / Linux:
 ```shell
 docker run \
   --mount "type=bind,src=$(pwd)/my-solution.sql,dst=/tmp/player1-solution.sql" \
@@ -57,8 +59,23 @@ docker run \
   --options /tmp/options.toml \
   --log INFO   
 ```
+
+### Windows:
+```
+docker run ^
+  --mount "type=bind,src=%cd%/my-solution.sql,dst=/tmp/player1-solution.sql" ^
+  --mount "type=bind,src=%cd%/quick_start.sql,dst=/tmp/player2-solution.sql" ^
+  --mount "type=bind,src=%cd%/init.sql,dst=/tmp/init.sql" ^
+  --mount "type=bind,src=%cd%/my-options.toml,dst=/tmp/options.toml" ^
+  --rm -it -e SEED=123456 ghcr.io/all-cups/it_one_cup_sql ^
+  --solution /tmp/player1-solution.sql ^
+  --solution /tmp/player2-solution.sql ^
+  --dump-init /tmp/init.sql ^
+  --options /tmp/options.toml ^
+  --log INFO   
+```
 Обратите внимание, что в этом примере:
-* `$(pwd)` - это текущий каталог (хост машины)
+* `$(pwd)` / `%cd%`- это текущий каталог хост машины
 * Файл `init.sql` должен существовать _перед_ запуском (он будет перезаписан)
 * Параметр `--log INFO` можно заменить на `--log DEBUG` для детализации ошибок
 
