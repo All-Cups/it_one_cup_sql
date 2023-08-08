@@ -68,6 +68,6 @@ docker run \
 
 1. Поднять базу данных: `docker run --rm --detach --name dump-explorer --env POSTGRES_PASSWORD=verysecret postgres`
 2. Загрузить дамп: `docker exec -i dump-explorer pg_restore --dbname postgres --username postgres < game.dump`
-3. Подключиться к базе: `docker exec -it dump-explorer psql`
+3. Подключиться к базе: `docker exec -it dump-explorer psql -U postgres postgres`
 4. Получить нужную информацию: `select * from final_world.players;`
 5. Остановить контейнер: `docker stop dump-explorer`
