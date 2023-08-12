@@ -22,11 +22,19 @@ cat solution.sql | docker run --rm -i ghcr.io/all-cups/it_one_cup_sql --solution
 ```
 
 Контейнер завершится, как только игра закончится.
-Если хочется посмотреть в базу после окончания игры, можно использовать аргумент `--leave-running`
-(и не забыть пробросить порт для соединения с базой снаружи):
+Если хочется посмотреть в базу после окончания игры, можно использовать аргумент `--leave-running`.
+
+Внутри контейнера поднимается база для создания логов на порту 5432,
+а также по базе на каждое решение на портах 5433, 5434 и тд.
+
+При желании можно пробросить нужный порт для соединения с базой снаружи:
 
 ```sh
-docker run --rm -it -p 5432:5432 ghcr.io/all-cups/it_one_cup_sql --leave-running
+docker run --rm -it -p 5433:5433 ghcr.io/all-cups/it_one_cup_sql --leave-running
+```
+Либо запустить `psql` изнутри запущенного контейнера:
+```
+docker exec -it <container_name> psql --host localhost --port 5433 --username postgres postgres
 ```
 
 Фиксирование сида возможно с помощью переменной окружения `SEED`:
@@ -85,6 +93,6 @@ docker run ^
 
 1. Поднять базу данных: `docker run --rm --detach --name dump-explorer --env POSTGRES_PASSWORD=verysecret postgres`
 2. Загрузить дамп: `docker exec -i dump-explorer pg_restore --dbname postgres --username postgres < game.dump`
-3. Подключиться к базе: `docker exec -it dump-explorer psql -U postgres postgres`
-4. Получить нужную информацию: `select * from final_world.players;`
-5. Остановить контейнер: `docker stop dump-explorer`
+4. Подключиться к базе: `docker exec -it dump-explorer psql --host localhost --username postgres postgres`
+5. Получить нужную информацию: `select * from final_world.players;`
+6. Остановить контейнер: `docker stop dump-explorer`
