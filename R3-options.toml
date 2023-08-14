@@ -1,0 +1,16 @@
+max_time = 100000
+map_size = 1000
+islands = 25
+ships_per_player = 10
+ship_speed = { min = 1, max = 10 }
+ship_capacity = { min = 50, max = 2000 }
+price_change_speed = 0.0001
+price_modifier = { min = 0.25, max = 4 }
+item_consumers = { min = 1, max = 14 }
+item_producers = { min = 1, max = 14 }
+item_base_price = { min = 1, max = 10 }
+item_contractor_max_quantity = { min = 500, max = 1000 }
+item_use_generate_speed = { min = 1, max = 2 }
+items = ["Ткань", "Одежда", "Алмазы", "Камень", "Древесина"]
+user_time_multiplier = 1000
+transfer_time_per_unit = 1
