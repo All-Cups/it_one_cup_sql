@@ -125,7 +125,7 @@ BEGIN
             -- событие = ПРЕДЛОЖЕНИЕ принято ?
             for loading in
                 select
-                    vendor.item as item,
+                    customer.item as item,
                     contract.quantity as quantity,
                     contract.id as id
                 from events.contract_started as e
@@ -133,10 +133,10 @@ BEGIN
                     on contract.id = e.contract
                     and contract.quantity > 0
                     and contract.player = player_id
-                join world.contractors as vendor
-                    on vendor.id = contract.contractor
+                join world.contractors as customer
+                    on customer.id = contract.contractor
                 join world.storage as storage
-                    on storage.item = vendor.item
+                    on storage.item = customer.item
                     and storage.quantity >= contract.quantity
                     and storage.island = parked_ship.island
                     and storage.player = player_id
