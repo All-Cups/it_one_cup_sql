@@ -62,7 +62,7 @@ docker run --rm -it ghcr.io/all-cups/it_one_cup_sql --help
 docker run \
   --volume $(pwd):/tmp \
   --rm -it -e SEED=123456 ghcr.io/all-cups/it_one_cup_sql \
-  --solution /tmp/quick_start.sql \
+  --solution /tmp/solution.sql \
   --solution /tmp/quick_start_with_trade.sql \
   --dump-init /tmp/init.sql \
   --options /tmp/options.toml \
@@ -72,13 +72,10 @@ docker run \
 ### Windows:
 ```
 docker run ^
-  --mount "type=bind,src=%cd%/my-solution.sql,dst=/tmp/player1-solution.sql" ^
-  --mount "type=bind,src=%cd%/quick_start.sql,dst=/tmp/player2-solution.sql" ^
-  --mount "type=bind,src=%cd%/init.sql,dst=/tmp/init.sql" ^
-  --mount "type=bind,src=%cd%/my-options.toml,dst=/tmp/options.toml" ^
+  --volume %cd%:/tmp ^
   --rm -it -e SEED=123456 ghcr.io/all-cups/it_one_cup_sql ^
-  --solution /tmp/player1-solution.sql ^
-  --solution /tmp/player2-solution.sql ^
+  --solution /tmp/solution.sql ^
+  --solution /tmp/quick_start_with_trade.sql ^
   --dump-init /tmp/init.sql ^
   --options /tmp/options.toml ^
   --log INFO   
