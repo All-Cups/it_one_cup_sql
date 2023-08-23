@@ -34,8 +34,8 @@
    ```
    Кроме того, с конфигурациями всех раундов можно ознакомиться по ссылкам:
    * [R1-options.toml](R1-options.toml) - Раунд бета-тестирования
-   * [R2-options.toml](R1-options.toml) - Основной раунд
-   * [R3-options.toml](R1-options.toml) - Финал
+   * [R2-options.toml](R2-options.toml) - Основной раунд
+   * [R3-options.toml](R3-options.toml) - Финал
 1. #### До какого времени будет доступна загрузка решений в финале?
     до 23:59 21 августа
    
